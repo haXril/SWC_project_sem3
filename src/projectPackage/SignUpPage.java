@@ -121,6 +121,13 @@ public class SignUpPage extends JFrame {
 		lblNewLabel_3_3.setBounds(10, 161, 76, 23);
 		signUpPanel.add(lblNewLabel_3_3);
 		
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.setForeground(Color.WHITE);
+		cancelButton.setFocusable(false);
+		cancelButton.setBackground(new Color(204, 51, 51));
+		cancelButton.setBounds(338, 350, 89, 23);
+		signUpPanel.add(cancelButton);
+		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
 		panel_3.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -181,13 +188,16 @@ public class SignUpPage extends JFrame {
 										if(passwordField.getText().equalsIgnoreCase(pass2)) {
 											
 											JOptionPane.showMessageDialog(null, "Your Register is successful!!!");
-											page1 page = new page1();
-											page.setVisible(true);
-											page.setLocationRelativeTo(null);
+											loginPage lg = new loginPage();
+											lg.setVisible(true);
+											lg.setLocationRelativeTo(null);
 											dispose();
 											
-											//String name = firstNameField.getText() + " " + lastNameField.getText();
+											String name = firstNameField.getText() + " " + lastNameField.getText();
+											String uesrname = usernameField.getText();
+											String pass = passwordField.getText();
 											
+											lg.confirmation(name, username, pass);
 										}
 										else {
 											JOptionPane.showMessageDialog(null, "You insert the wrong password at confirm password", "" , JOptionPane.ERROR_MESSAGE);
@@ -216,6 +226,12 @@ public class SignUpPage extends JFrame {
 			
 			}
 		});
+		
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(0);
+			}
+		});
 	}
-
 }
