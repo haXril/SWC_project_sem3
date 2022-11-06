@@ -1,5 +1,4 @@
 package projectPackage;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,6 +26,7 @@ public class loginPage extends JFrame {
 	private JTextField usernameField;
 	private JPasswordField passwordField;
     private JButton loginButton = new JButton("Log In");
+	private JLabel LabelName;
 	
 	public loginPage() {
 		setFont(new Font("Serif", Font.BOLD, 17));
@@ -48,7 +48,7 @@ public class loginPage extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Login");
-		lblNewLabel.setBounds(165, 41, 91, 31);
+		lblNewLabel.setBounds(165, 51, 91, 31);
 		panel.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Stencil", Font.BOLD, 30));
@@ -76,11 +76,6 @@ public class loginPage extends JFrame {
 		lblNewLabel_3_1.setFont(new Font("Tw Cen MT Condensed", Font.BOLD, 16));
 		lblNewLabel_3_1.setBounds(22, 178, 76, 23);
 		panel.add(lblNewLabel_3_1);
-		loginButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
 		
 		loginButton.setForeground(Color.WHITE);
 		loginButton.setBackground(new Color(0, 0, 128));
@@ -88,19 +83,33 @@ public class loginPage extends JFrame {
 		loginButton.setBounds(110, 282, 91, 23);
 		panel.add(loginButton);
 		
-		JButton btnNewButton_1 = new JButton("Cancel");
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(new Color(204, 51, 51));
-	    btnNewButton_1.setFocusable(false);
-		btnNewButton_1.setBounds(313, 282, 89, 23);
-		panel.add(btnNewButton_1);
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.setForeground(Color.WHITE);
+		cancelButton.setBackground(new Color(204, 51, 51));
+	    cancelButton.setFocusable(false);
+		cancelButton.setBounds(313, 282, 89, 23);
+		panel.add(cancelButton);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Show Password");
-		chckbxNewCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chckbxNewCheckBox.setBackground(new Color(144, 238, 144));
-		chckbxNewCheckBox.setForeground(Color.RED);
-		chckbxNewCheckBox.setBounds(108, 224, 294, 23);
-		panel.add(chckbxNewCheckBox);
+		JCheckBox showPassword = new JCheckBox("Show Password");
+		showPassword.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		showPassword.setBackground(new Color(144, 238, 144));
+		showPassword.setForeground(Color.RED);
+		showPassword.setBounds(108, 224, 294, 23);
+		panel.add(showPassword);
+		
+		JLabel lblNewLabel_4 = new JLabel("Welcome  to our System ");
+		lblNewLabel_4.setForeground(new Color(0, 0, 205));
+		lblNewLabel_4.setFont(new Font("Sitka Small", Font.BOLD, 12));
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setBounds(10, 5, 417, 25);
+		panel.add(lblNewLabel_4);
+		
+		LabelName = new JLabel("");
+		LabelName.setHorizontalAlignment(SwingConstants.CENTER);
+		LabelName.setForeground(new Color(0, 0, 205));
+		LabelName.setFont(new Font("Sitka Small", Font.BOLD, 12));
+		LabelName.setBounds(10, 26, 417, 14);
+		panel.add(LabelName);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
@@ -114,13 +123,33 @@ public class loginPage extends JFrame {
 		lblNewLabel_1.setBounds(52, 11, 319, 251);
 		panel_3.add(lblNewLabel_1);
 		
+		showPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					if(showPassword.isSelected()) {
+						passwordField.setEchoChar((char) 0);
+					}
+					else {
+						passwordField.setEchoChar('*');
+					}
+			
+			}
+		});
 		
+		
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(0);
+			}
+		});
 		
 	}
 	
 	public void confirmation(String n,String user,String pass) {
 		
-
+		LabelName.setText(n);
+		
 		loginButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
