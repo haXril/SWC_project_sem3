@@ -39,10 +39,6 @@ public class page1 extends JFrame {
 	private JTable table3;
 	private JTable table4;
 	private JTable table5;
-	private JTable table6;
-	private JTable table7;
-	private JTable table8;
-	private JTable table9;
 	private JLabel timeLabel;
 	
     private JButton Add;
@@ -53,10 +49,6 @@ public class page1 extends JFrame {
     private DefaultTableModel model3;
     private DefaultTableModel model4;
     private DefaultTableModel model5;
-    private DefaultTableModel model6;
-    private DefaultTableModel model7;
-    private DefaultTableModel model8;
-    private DefaultTableModel model9;
     
     Citizen citizen;
     
@@ -64,7 +56,6 @@ public class page1 extends JFrame {
     private LinkedList<Citizen> dCitizenlist = new LinkedList<Citizen>();
     private LinkedList<Citizen> dCitizenlist1 = new LinkedList<Citizen>();
     private LinkedList<Citizen> completedList = new LinkedList<Citizen>();
-    private LinkedList<Citizen> notCompletedList = new LinkedList<Citizen>();
     private LinkedList<Citizen> testFirstDoseStatus = new LinkedList<Citizen>();
     private LinkedList<Citizen> testSecondDoseStatus = new LinkedList<Citizen>();
     
@@ -90,34 +81,20 @@ public class page1 extends JFrame {
 
     
     String ic ;
-	String name ; 
-	int age ;
-	String state ;
-	String Category ;
-	String firstDoseStatus = null;
-	String secondDoseStatus = null ;
-	String certificate = null ;
+    String name ; 
+    int age ;
+    String state ;
+    String Category ;
+    String firstDoseStatus = null;
+    String secondDoseStatus = null ;
+    String certificate = null ;
 	
-	Calendar timer;
-	SimpleDateFormat timeFormat ;
-	SimpleDateFormat tTime ;
-	SimpleDateFormat Tdate ;
+    Calendar timer;
+    SimpleDateFormat timeFormat ;
+    SimpleDateFormat tTime ;
+    SimpleDateFormat Tdate ;
 	
-    public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					page1 frame = new page1();
-					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	public page1() {
+    public page1() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\ADMIN\\Downloads\\project2-removebg-preview.png"));
 		setTitle("My Citizen Vacination");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -156,12 +133,12 @@ public class page1 extends JFrame {
 		panel_4.setLayout(null);
 		
 		JButton DisplayCompleteDose = new JButton("Display Complete Dose");
-		DisplayCompleteDose.setBounds(132, 68, 141, 23);
+		DisplayCompleteDose.setBounds(118, 68, 171, 23);
 		panel_4.add(DisplayCompleteDose);
 		DisplayCompleteDose.setFocusable(false);
 		
 		JButton DisplayFirstDose = new JButton("Display 1st Dose");
-		DisplayFirstDose.setBounds(132, 34, 141, 23);
+		DisplayFirstDose.setBounds(118, 34, 171, 23);
 		panel_4.add(DisplayFirstDose);
 		DisplayFirstDose.setFocusable(false);
 		
@@ -207,7 +184,7 @@ public class page1 extends JFrame {
 		
 		Object[] columns = {"Ic Number","Name","Age","State","Category","1st Dose","2nd Dose","Certificate"};
 	    
-	    model = new DefaultTableModel();
+	        model = new DefaultTableModel();
 		model.setColumnIdentifiers(columns);
 		
 		table = new JTable();
@@ -219,7 +196,7 @@ public class page1 extends JFrame {
 		
 		JScrollPane pane = new JScrollPane(table);
 		pane.setBounds(10, 120, 1032, 792);
-	    panel.add(pane);
+	        panel.add(pane);
 		pane.setForeground(Color.red);
 		pane.setBackground(Color.white);
 		pane.setVisible(true);
@@ -245,7 +222,7 @@ public class page1 extends JFrame {
 		pane1.setVisible(true);
 		
 		//-------------------------------1st Dose----------------------------------------------
-		Object[] columns2 = {"Ic Number","Name","Age","State","Category","1st Dose","2nd Dose","Certificate"};
+		Object[] columns2 = {"Ic Number","Name","Age","State","Category","1st Dose"};
 		
 		model2 = new DefaultTableModel();
 		model2.setColumnIdentifiers(columns2);
@@ -264,7 +241,7 @@ public class page1 extends JFrame {
 		pane2.setBackground(Color.white);
 		pane2.setVisible(false);
 		
-		Object[] columns3 = {"Ic Number","Name","Age","State","Category","1st Dose","2nd Dose","Certificate"};
+		Object[] columns3 = {"Ic Number","Name","Age","State","Category","1st Dose"};
 		
 		model3 = new DefaultTableModel();
 		model3.setColumnIdentifiers(columns3);
@@ -283,7 +260,7 @@ public class page1 extends JFrame {
 		pane3.setBackground(Color.white);
 		pane3.setVisible(false);
 		
-		Object[] columns4 = {"Ic Number","Name","Age","State","Category","1st Dose","2nd Dose","Certificate"};
+		Object[] columns4 = {"Ic Number","Name","Age","State","Category","1st Dose"};
 		
 		model4 = new DefaultTableModel();
 		model4.setColumnIdentifiers(columns4);
@@ -358,7 +335,7 @@ public class page1 extends JFrame {
 		yearsOld31.setFont(new Font("Sitka Small", Font.BOLD, 15));
 		yearsOld31.setBounds(10, 402, 1032, 34);
 		yearsOld31.setVisible(false);
-	    panel.add(yearsOld31);
+	        panel.add(yearsOld31);
 		
 		JLabel yearsOld50 = new JLabel("50 years old and above : ");
 		yearsOld50.setHorizontalAlignment(SwingConstants.CENTER);
@@ -397,9 +374,9 @@ public class page1 extends JFrame {
 		
         Object[] row = new Object[8];
         Object[] row1 = new Object[8];
-        Object[] row2 = new Object[8];
-        Object[] row3 = new Object[8];
-        Object[] row4 = new Object[8];
+        Object[] row2 = new Object[6];
+        Object[] row3 = new Object[6];
+        Object[] row4 = new Object[6];
         
         timer = Calendar.getInstance();
 		timer.getTime();
@@ -414,8 +391,6 @@ public class page1 extends JFrame {
 		timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		timeLabel.setFont(new Font("Snap ITC", Font.PLAIN, 50));
 		timeLabel.setBounds(30, 72, 437, 96);
-		
-		//setTime();
 		
 		contentPane.add(timeLabel);
 		
@@ -459,6 +434,7 @@ public class page1 extends JFrame {
                 citizenlist.add(citizen);
                 dCitizenlist.add(citizen);
                 dCitizenlist1.add(citizen);
+                
                 index++;
             }
             
@@ -470,8 +446,6 @@ public class page1 extends JFrame {
     				 age = Integer.parseInt(JOptionPane.showInputDialog("Citizen age :"));
     				 state = JOptionPane.showInputDialog("Citizen State :");
     				 Category = JOptionPane.showInputDialog("Citizen Category :");
-    				 firstDoseStatus = JOptionPane.showInputDialog("Citizen 1st dose status :");
-    				 secondDoseStatus = JOptionPane.showInputDialog("Citizen 2nd dose status :");
     				
     				 row[0] = ic;
     		         row[1] = name;
@@ -481,8 +455,8 @@ public class page1 extends JFrame {
     		         row[5] = firstDoseStatus;
     		         row[6] = secondDoseStatus;
     		         
-    		         if(firstDoseStatus.equalsIgnoreCase("Completed") && secondDoseStatus.equalsIgnoreCase("Completed")) {
-    		        	 row[7] = "Done";
+    		         if(firstDoseStatus.equalsIgnoreCase("Done") && secondDoseStatus.equalsIgnoreCase("Done")) {
+    		        	 row[7] = "Completed";
     		         }
     		         else {
     		        	 row[7] = "-";
@@ -518,8 +492,8 @@ public class page1 extends JFrame {
                     		dCitizenlist.addLast(citizen);
                     		dCitizenlist1.addLast(citizen);
                 	    }
-                    //citizenlist.remove(citizen);
-                }
+                    }
+    	            citizenlist.clear();
     			}
     		});
 			
@@ -605,7 +579,6 @@ public class page1 extends JFrame {
             updateFirstDose.addActionListener(new ActionListener() {
     			public void actionPerformed(ActionEvent e) {
     				
-    			
     				int respond = JOptionPane.showConfirmDialog(null,"Do you want to update 1st dose status for all citizen to completed?","",JOptionPane.YES_NO_OPTION);
     				
     				if(respond==0) {
@@ -718,13 +691,12 @@ public class page1 extends JFrame {
 		    				}
 		    				
 		    	            System.out.print(dQueue3);
-    						}
-    						else {
+    					}
+    					else {
     							JOptionPane.showMessageDialog(null, "You already update the citizen First Dose Status!!!", "" , JOptionPane.ERROR_MESSAGE);
-    						}
-        					
-        				}
-        				else if(testFirstDoseStatus.isEmpty()==true) {
+    					}
+        			}
+        			else if(testFirstDoseStatus.isEmpty()==true) {
         						
 		    				firstDoseStatus = "Done";
 		    				
@@ -837,42 +809,35 @@ public class page1 extends JFrame {
         					JOptionPane.showMessageDialog(null, "You already update the citizen 1st Dose Status!!!", "" , JOptionPane.ERROR_MESSAGE);
         				}
         				else if(testFirstDoseStatus.isEmpty()==true) {
-    					for(int x=0; x<stCenter1.size(); x++) {
-        					citizen = stCenter1.get(x);
         					
-        			        citizen.setFirstDoseStatus("");
-        					stCenter1.set(x, citizen);
+        					for(int x=0; x<stCenter1.size(); x++) {
+            					citizen = stCenter1.get(x);
+            					
+            			        citizen.setFirstDoseStatus("");
+            					stCenter1.set(x, citizen);
+            					
+            					if(x<1) {
+            						testFirstDoseStatus.add(citizen);
+            					}
+            					
+            				}
         					
-        					if(x<1) {
-        						testFirstDoseStatus.add(citizen);
-        					}
-        					
-        				}
-        				
-		            for(int x=0; x<stCenter2.size(); x++) {
-		            	citizen = stCenter2.get(x);
-        					
-        					citizen.setFirstDoseStatus("");
-        					stCenter2.set(x, citizen);
-        					
-        				}
-		            
-		            for(int x=0; x<stCenter3.size(); x++) {
-		            	citizen = stCenter3.get(x);
-        					
-        					citizen.setFirstDoseStatus("");
-        					stCenter3.set(x, citizen);	
-        				}
-		            
-		            //stCenter1.clear();
-		            //stCenter2.clear();
-		            //stCenter3.clear();
-		            
-        				System.out.println("\n\nStack 1 : " +dStack1);
-        				System.out.println("\n\nStack 2 : " +dStack2);
-        				System.out.println("\n\nStack 3 : " +dStack3);
-    				}
-    			}
+        					for(int x=0; x<stCenter2.size(); x++) {
+        		            	citizen = stCenter2.get(x);
+                					
+                					citizen.setFirstDoseStatus("");
+                					stCenter2.set(x, citizen);
+                					
+                			}
+        		            
+        		            for(int x=0; x<stCenter3.size(); x++) {
+        		            	citizen = stCenter3.get(x);
+                					
+                					citizen.setFirstDoseStatus("");
+                					stCenter3.set(x, citizen);	
+                			}
+        		        }
+    			    }
     				
     			}
     		});
@@ -884,103 +849,81 @@ public class page1 extends JFrame {
     				
     				if(respond == 0) {
     					
-    				if(testSecondDoseStatus.isEmpty()==false) {
-                        
-    					Citizen test;
+    					if(testSecondDoseStatus.isEmpty()==false) {
+        					
+    						JOptionPane.showMessageDialog(null, "You already update the citizen 2nd Dose Status!!!", "" , JOptionPane.ERROR_MESSAGE);
     					
-    					test = testSecondDoseStatus.getFirst();
-    					
-    					if(test.getSecondDoseStatus("").equalsIgnoreCase("")) {
-    						
-    					}
-    					JOptionPane.showMessageDialog(null, "You already update the citizen 2nd Dose Status!!!", "" , JOptionPane.ERROR_MESSAGE);
     				}
-    				
     				else if(testSecondDoseStatus.isEmpty()==true) {
+    					
     						if(qCenter1.isEmpty()==true) {
             					if(qCenter2.isEmpty()==true) {
             						if(qCenter3.isEmpty()==true) {
             							JOptionPane.showMessageDialog(null, "Cannot update 2nd dose cause you does not update the citizen 1st dose status!!!", "" , JOptionPane.ERROR_MESSAGE);
             						}
             					}
-            				  }
-    						
+            				}
     						else {
-    							
     							if(qCenter1.isEmpty()==false) {
     	        					if(qCenter2.isEmpty()==false) {
     	        						if(qCenter3.isEmpty()==false) {
     	        							
     	        		    				secondDoseStatus = "Done";
-    	        							
-    	        		    					dQueue1.clear();
-    	        		    					dQueue2.clear();
-    	        		    					dQueue3.clear();
-    	        		    					
-    	        		    					for(int x=0; x<sQueue1.size(); x++) {
-    	        		        					citizen = qCenter1.element();
-    	        		        					
-    	        		        			        citizen.setSecondDoseStatus(secondDoseStatus);
-    	        		        					citizen.setCertificate("Completed");
-    	        		        			        dQueue1.add(citizen);
-    	        		        			        
-    	        		        			        if(x<1) {
-    	        		        			        	testSecondDoseStatus.add(citizen);
-    	        		        			        }
-    	        		        			        completedList.add(citizen);
-    	        		        					qCenter1.remove(citizen);
-    	        		        				}
-    	        		        				
-    	        		    					
-    	        		                        for(int x=0; x<sQueue2.size(); x++) {
-    	        		                        	citizen = qCenter2.element();
-    	        		        					
-    	        		        					citizen.setSecondDoseStatus(secondDoseStatus);
-    	        		        					citizen.setCertificate("Completed");
-    	        		        					
-    	        		        					dQueue2.add(citizen);
-    	        		        					completedList.add(citizen);
-    	        		        					qCenter2.remove(citizen);
-    	        		        					
-    	        		        				}
-    	        		                        
-    	        		                        for(int x=0; x<sQueue3.size(); x++) {
-    	        		                        	citizen = qCenter3.element();
-    	        		        					
-    	        		        					citizen.setSecondDoseStatus(secondDoseStatus);
-    	        		        					citizen.setCertificate("Completed");
-    	        		        					
-    	        		        					dQueue3.add(citizen);
-    	        		        					completedList.add(citizen);
-    	        		        					qCenter3.remove(citizen);
-    	        		        				}
-    	        		        				System.out.println("\n\nStack 1 : " +dQueue1);
-    	        		        				System.out.println("\n\nStack 2 : " +dQueue2);
-    	        		        				System.out.println("\n\nStack 3 : " +dQueue3);
-    	        		        				
-    	        		        				for(int x=0; x<completedList.size(); x++) {
-    	        		        					
-    	        		        					row1[0] = completedList.get(x).getIc(ic);
-    	        		        					row1[1] = completedList.get(x).getName(name);
-    	        		        					row1[2] = completedList.get(x).getAge(age);
-    	        		        					row1[3] = completedList.get(x).getState(state);
-    	        		        					row1[4] = completedList.get(x).getCategory(Category);
-    	        		        					row1[5] = completedList.get(x).getFirstDoseStatus(firstDoseStatus);
-    	        		        					row1[6] = completedList.get(x).getSecondDoseStatus(secondDoseStatus);
-    	        		        					row1[7] = completedList.get(x).getCertificate(certificate);
-    	        		        					
-    	        		        					model5.addRow(row1);
-    	        		        				}
-    	        		        				
+    	        		    				
+    	        		    				for(int x=0; x<sQueue1.size(); x++) {
+	        		        					citizen = qCenter1.element();
+	        		        					
+	        		        			        citizen.setSecondDoseStatus(secondDoseStatus);
+	        		        					citizen.setCertificate("Completed");
+	        		        			        
+	        		        			        
+	        		        			        testSecondDoseStatus.addFirst(citizen);
+	        		        			        
+	        		        			        completedList.add(citizen);
+	        		        					qCenter1.remove(citizen);
+	        		        				}
+	        		        				
+	        		    					
+	        		                        for(int x=0; x<sQueue2.size(); x++) {
+	        		                        	citizen = qCenter2.element();
+	        		        					
+	        		        					citizen.setSecondDoseStatus(secondDoseStatus);
+	        		        					citizen.setCertificate("Completed");
+	        		        					
+	        		        					completedList.add(citizen);
+	        		        					qCenter2.remove(citizen);
+	        		        					
+	        		        				}
+	        		                        
+	        		                        for(int x=0; x<sQueue3.size(); x++) {
+	        		                        	citizen = qCenter3.element();
+	        		        					
+	        		        					citizen.setSecondDoseStatus(secondDoseStatus);
+	        		        					citizen.setCertificate("Completed");
+	        		        					
+	        		        					completedList.add(citizen);
+	        		        					qCenter3.remove(citizen);
+	        		        				}
+	        		        				
+	        		        				for(int x=0; x<completedList.size(); x++) {
+	        		        					
+	        		        					row1[0] = completedList.get(x).getIc(ic);
+	        		        					row1[1] = completedList.get(x).getName(name);
+	        		        					row1[2] = completedList.get(x).getAge(age);
+	        		        					row1[3] = completedList.get(x).getState(state);
+	        		        					row1[4] = completedList.get(x).getCategory(Category);
+	        		        					row1[5] = completedList.get(x).getFirstDoseStatus(firstDoseStatus);
+	        		        					row1[6] = completedList.get(x).getSecondDoseStatus(secondDoseStatus);
+	        		        					row1[7] = completedList.get(x).getCertificate(certificate);
+	        		        					
+	        		        					model5.addRow(row1);
+	        		        				}		
     	        						}
     	        					}
     	        				}
-    						}
-        				 
+    					    }
     					}
     				}
-    				
-    				
     			}
     		});
 	
@@ -991,12 +934,15 @@ public class page1 extends JFrame {
 					if(dStack1.isEmpty()==true) {
 						if(dStack2.isEmpty()==true) {
 							if(dStack3.isEmpty()==true) {
-								JOptionPane.showMessageDialog(null, "Cannot display 1st dose status cause you dont update 1st dose status for all citizen!!!", "" , JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, "There's no have a 1st dose citizen!!!", "" , JOptionPane.ERROR_MESSAGE);
 							}
 						}
 					}
 					else {
-						
+						table2.enable(false);
+	    				table3.enable(false);
+	    				table4.enable(false);
+	    				
 	                    pane2.setVisible(true);
 	    				pane3.setVisible(true);
 	    				pane4.setVisible(true);
@@ -1009,25 +955,25 @@ public class page1 extends JFrame {
 	    				citizenDetails.setVisible(false);
 	    				CompletedLabel.setVisible(false);
 	    				citizenDetails2.setVisible(false);
-	    				
 					}
-                    
-			}
-		});
+			   }
+		    });
 		
     		DisplayCompleteDose.addActionListener(new ActionListener() {
     			public void actionPerformed(ActionEvent e) {
     				
     				if(completedList.isEmpty()==true) {
-    					JOptionPane.showMessageDialog(null, "Cannot display complete dose status for all citizen because you not update 2nd dose status for all citizen!!!", "" , JOptionPane.ERROR_MESSAGE);
+    					JOptionPane.showMessageDialog(null, "There's no have a completed citizen dose!!!", "" , JOptionPane.ERROR_MESSAGE);
     				}
     				else if(completedList.isEmpty()==false) {
     					
-		            pane5.setVisible(true);
+    					table5.enable(false);
+    					
+		                pane5.setVisible(true);
         				pane2.setVisible(false);
         				pane3.setVisible(false);
         				pane4.setVisible(false);
-		            citizenDetails.setVisible(false);
+		                citizenDetails.setVisible(false);
         				pane.setVisible(false);
         				CompletedLabel.setVisible(true);
         				citizenDetails2.setVisible(true);
@@ -1036,10 +982,6 @@ public class page1 extends JFrame {
         				yearsOld31.setVisible(false);
         				yearsOld50.setVisible(false);
     				}
-    				
-
-		        
-    				
     			}
     		});
     		
