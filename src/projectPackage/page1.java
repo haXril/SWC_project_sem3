@@ -1,6 +1,5 @@
 package projectPackage;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -32,69 +31,91 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("serial")
 public class page1 extends JFrame {
 
-	private JPanel contentPane;
-	private JTable table;
-	private JTable table1;
-	private JTable table2;
-	private JTable table3;
-	private JTable table4;
-	private JTable table5;
-	private JLabel timeLabel;
+	 JPanel contentPane;
+	 JTable table;
+	 JTable table1;
+	 JTable table2;
+	 JTable table3;
+	 JTable table4;
+	 JTable table5;
+	 JLabel timeLabel;
+	 JLabel dateLabel;
 	
-    private JButton Add;
+     JButton Add;
     
-    private DefaultTableModel model;
-    private DefaultTableModel model1;
-    private DefaultTableModel model2;
-    private DefaultTableModel model3;
-    private DefaultTableModel model4;
-    private DefaultTableModel model5;
+     DefaultTableModel model;
+     DefaultTableModel model1;
+     DefaultTableModel model2;
+     DefaultTableModel model3;
+     DefaultTableModel model4;
+     DefaultTableModel model5;
     
     Citizen citizen;
     
-    private LinkedList<Citizen> citizenlist = new LinkedList<Citizen>();
-    private LinkedList<Citizen> dCitizenlist = new LinkedList<Citizen>();
-    private LinkedList<Citizen> dCitizenlist1 = new LinkedList<Citizen>();
-    private LinkedList<Citizen> completedList = new LinkedList<Citizen>();
-    private LinkedList<Citizen> testFirstDoseStatus = new LinkedList<Citizen>();
-    private LinkedList<Citizen> testSecondDoseStatus = new LinkedList<Citizen>();
+     LinkedList<Citizen> citizenlist = new LinkedList<Citizen>();
+     LinkedList<Citizen> dCitizenlist = new LinkedList<Citizen>();
+     LinkedList<Citizen> dCitizenlist1 = new LinkedList<Citizen>();
+     LinkedList<Citizen> completedList = new LinkedList<Citizen>();
+     LinkedList<Citizen> testFirstDoseStatus = new LinkedList<Citizen>();
+     LinkedList<Citizen> testSecondDoseStatus = new LinkedList<Citizen>();
     
-    private Stack<Citizen> stCenter1 = new Stack<Citizen>();
-    private Stack<Citizen> stCenter2 = new Stack<Citizen>();
-    private Stack<Citizen> stCenter3 = new Stack<Citizen>();
-    private Stack<Citizen> sStack1 = new Stack<Citizen>();
-    private Stack<Citizen> sStack2 = new Stack<Citizen>();
-    private Stack<Citizen> sStack3 = new Stack<Citizen>();
-    private Stack<Citizen> dStack1 = new Stack<Citizen>();
-    private Stack<Citizen> dStack2 = new Stack<Citizen>();
-    private Stack<Citizen> dStack3 = new Stack<Citizen>();
+     Stack<Citizen> stCenter1 = new Stack<Citizen>();
+     Stack<Citizen> stCenter2 = new Stack<Citizen>();
+     Stack<Citizen> stCenter3 = new Stack<Citizen>();
+     Stack<Citizen> sStack1 = new Stack<Citizen>();
+     Stack<Citizen> sStack2 = new Stack<Citizen>();
+     Stack<Citizen> sStack3 = new Stack<Citizen>();
+     Stack<Citizen> dStack1 = new Stack<Citizen>();
+     Stack<Citizen> dStack2 = new Stack<Citizen>();
+     Stack<Citizen> dStack3 = new Stack<Citizen>();
     
-    private Queue<Citizen> qCenter1 = new LinkedList<Citizen>();
-    private Queue<Citizen> qCenter2 = new LinkedList<Citizen>();
-    private Queue<Citizen> qCenter3 = new LinkedList<Citizen>();
-    private Queue<Citizen> dQueue1 = new LinkedList<Citizen>();
-    private Queue<Citizen> dQueue2 = new LinkedList<Citizen>();
-    private Queue<Citizen> dQueue3 = new LinkedList<Citizen>();
-    private Queue<Citizen> sQueue1 = new LinkedList<Citizen>();
-    private Queue<Citizen> sQueue2 = new LinkedList<Citizen>();
-    private Queue<Citizen> sQueue3 = new LinkedList<Citizen>();
+     Queue<Citizen> qCenter1 = new LinkedList<Citizen>();
+     Queue<Citizen> qCenter2 = new LinkedList<Citizen>();
+     Queue<Citizen> qCenter3 = new LinkedList<Citizen>();
+     Queue<Citizen> dQueue1 = new LinkedList<Citizen>();
+     Queue<Citizen> dQueue2 = new LinkedList<Citizen>();
+     Queue<Citizen> dQueue3 = new LinkedList<Citizen>();
+     Queue<Citizen> sQueue1 = new LinkedList<Citizen>();
+     Queue<Citizen> sQueue2 = new LinkedList<Citizen>();
+     Queue<Citizen> sQueue3 = new LinkedList<Citizen>();
 
     
     String ic ;
-    String name ; 
-    int age ;
-    String state ;
-    String Category ;
-    String firstDoseStatus = null;
-    String secondDoseStatus = null ;
-    String certificate = null ;
+	String name ; 
+	int age ;
+	String state ;
+	String Category ;
+	String firstDoseStatus = null;
+	String secondDoseStatus = null ;
+	String certificate = null ;
 	
-    Calendar timer;
-    SimpleDateFormat timeFormat ;
-    SimpleDateFormat tTime ;
-    SimpleDateFormat Tdate ;
+	Calendar timer;
+	SimpleDateFormat timeFormat ;
+	SimpleDateFormat tTime  = new SimpleDateFormat("h:mm:ss a");
+	SimpleDateFormat Tdate ;
+	String time;
 	
-    public page1() {
+	public void clock() {
+    	Thread clock = new Thread()
+    	{
+    		public void run() {
+    			try {
+    				while(true) {
+    					time = tTime.format(Calendar.getInstance().getTime());
+    		    		timeLabel.setText(time);
+    				
+					    sleep(1000);
+    				}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    		}
+    	};
+    	clock.start();
+	}
+	
+	public page1() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\ADMIN\\Downloads\\project2-removebg-preview.png"));
 		setTitle("My Citizen Vacination");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -184,7 +205,7 @@ public class page1 extends JFrame {
 		
 		Object[] columns = {"Ic Number","Name","Age","State","Category","1st Dose","2nd Dose","Certificate"};
 	    
-	        model = new DefaultTableModel();
+	    model = new DefaultTableModel();
 		model.setColumnIdentifiers(columns);
 		
 		table = new JTable();
@@ -196,7 +217,7 @@ public class page1 extends JFrame {
 		
 		JScrollPane pane = new JScrollPane(table);
 		pane.setBounds(10, 120, 1032, 792);
-	        panel.add(pane);
+	    panel.add(pane);
 		pane.setForeground(Color.red);
 		pane.setBackground(Color.white);
 		pane.setVisible(true);
@@ -335,7 +356,7 @@ public class page1 extends JFrame {
 		yearsOld31.setFont(new Font("Sitka Small", Font.BOLD, 15));
 		yearsOld31.setBounds(10, 402, 1032, 34);
 		yearsOld31.setVisible(false);
-	        panel.add(yearsOld31);
+	    panel.add(yearsOld31);
 		
 		JLabel yearsOld50 = new JLabel("50 years old and above : ");
 		yearsOld50.setHorizontalAlignment(SwingConstants.CENTER);
@@ -366,28 +387,24 @@ public class page1 extends JFrame {
 		lblNewLabel.setBounds(-12, 11, 439, 225);
 		panel_3.add(lblNewLabel);
 		
-		JLabel dateLabel = new JLabel("");
-		dateLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		dateLabel.setBounds(30, 146, 437, 36);
-		contentPane.add(dateLabel);
-		
         Object[] row = new Object[8];
         Object[] row1 = new Object[8];
         Object[] row2 = new Object[6];
         Object[] row3 = new Object[6];
         Object[] row4 = new Object[6];
         
-        timer = Calendar.getInstance();
-		timer.getTime();
-		tTime = new SimpleDateFormat("hh:mm a");
+        dateLabel = new JLabel("");
+		dateLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		dateLabel.setBounds(30, 146, 437, 36);
+		contentPane.add(dateLabel);
+		
 		//================================================================================== Date =================================================================================================================
-		Tdate = new SimpleDateFormat("E,dd-MM-yyyy");
+        timer = Calendar.getInstance();
+        Tdate = new SimpleDateFormat("E,dd-MM-yyyy");
 		dateLabel.setText(Tdate.format(timer.getTime()));
-
-        timeFormat = new SimpleDateFormat("hh:mm:ss a");
-        
-		timeLabel = new JLabel(tTime.format(timer.getTime()));
+		
+		timeLabel = new JLabel("");
 		timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		timeLabel.setFont(new Font("Snap ITC", Font.PLAIN, 50));
 		timeLabel.setBounds(30, 72, 437, 96);
@@ -400,10 +417,12 @@ public class page1 extends JFrame {
 		lblNewLabel_3.setBounds(30, 72, 437, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		
-		
+		clock();
 		
 		try {
+			
+			
+			
 			BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ADMIN\\eclipse-workspace\\Project_Sem3\\src\\projectPackage\\citizenList.txt"));
 			
             String indata = null;
@@ -706,6 +725,7 @@ public class page1 extends JFrame {
 		        			        citizen.setFirstDoseStatus(firstDoseStatus);
 		        					stCenter1.set(x, citizen);
 		        					
+		        					
 		        					dStack1.add(citizen);
 		        					qCenter1.add(citizen);
 		        					sQueue1.add(citizen);
@@ -744,9 +764,9 @@ public class page1 extends JFrame {
 		                        stCenter2.clear();
 		                        stCenter3.clear();
 		                        
-		        				System.out.println("\n\nStack 1 : " +dStack1);
-		        				System.out.println("\n\nStack 2 : " +dStack2);
-		        				System.out.println("\n\nStack 3 : " +dStack3);
+		        				System.out.println("\n\nStack 1 : " +stCenter1);
+		        				System.out.println("\n\nStack 2 : " +stCenter2);
+		        				System.out.println("\n\nStack 3 : " +stCenter3);
 		        				
 		        				for(int x=0; x<sStack1.size(); x++) {
 		        					
